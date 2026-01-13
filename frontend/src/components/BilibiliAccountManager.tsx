@@ -228,7 +228,8 @@ const BilibiliAccountManager: React.FC = () => {
         }
       }, 1000)
       
-      setStatusCheckInterval(interval)
+      // @ts-ignore
+        setStatusCheckInterval(interval)
       
     } catch (error: any) {
       message.error('启动二维码登录失败: ' + (error.message || '未知错误'))

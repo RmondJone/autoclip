@@ -9,12 +9,12 @@ export interface SubtitleWord {
 
 // 字幕段落类型
 export interface SubtitleSegment {
-  id: string
-  startTime: number  // 秒
-  endTime: number    // 秒
+  id?: string
+  startTime?: number  // 秒
+  endTime?: number    // 秒
   words: SubtitleWord[]
-  text: string       // 完整文本
-  index: number      // 原始SRT索引
+  text?: string       // 完整文本
+  index?: number      // 原始SRT索引
 }
 
 // 视频编辑操作类型

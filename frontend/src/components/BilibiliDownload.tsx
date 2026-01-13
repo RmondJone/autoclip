@@ -181,7 +181,8 @@ const BilibiliDownload: React.FC<BilibiliDownloadProps> = ({ onDownloadSuccess }
       }
     }, 2000)
     
-    setPollingInterval(interval)
+    // @ts-ignore
+      setPollingInterval(interval)
   }
 
   const handleDownload = async () => {

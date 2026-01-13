@@ -1,30 +1,5 @@
 # AutoClip Dockerfile
 # 多阶段构建，优化镜像大小
-
-# 第一阶段：构建前端
-FROM node:18-slim AS frontend-builder
-
-WORKDIR /app/frontend
-
-# 安装必要的系统依赖
-RUN apt-get update && apt-get install -y \
-    python3 \
-    make \
-    g++ \
-    && rm -rf /var/lib/apt/lists/*
-
-# 复制前端依赖文件
-COPY frontend/package*.json ./
-
-# 安装前端依赖（使用完整安装，包括devDependencies）
-RUN npm ci
-
-# 复制前端源代码
-COPY frontend/ ./
-
-# 构建前端
-RUN npm run build
-
 # 第二阶段：构建后端
 FROM python:3.9-slim AS backend-builder
 
@@ -73,14 +48,13 @@ WORKDIR /app
 # 从构建阶段复制文件
 COPY --from=backend-builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
 COPY --from=backend-builder /usr/local/bin /usr/local/bin
-COPY --from=frontend-builder /app/frontend/dist /app/frontend/dist
 
 # 复制项目文件
 COPY backend/ ./backend/
 COPY scripts/ ./scripts/
 COPY *.sh ./
+#COPY docker-entrypoint.sh ./
 COPY env.example .env
-COPY docker-entrypoint.sh ./
 
 # 创建必要的目录
 RUN mkdir -p data/projects data/uploads data/temp data/output logs
@@ -88,19 +62,15 @@ RUN mkdir -p data/projects data/uploads data/temp data/output logs
 # 设置权限
 RUN chown -R autoclip:autoclip /app
 RUN chmod +x *.sh
-RUN chmod +x docker-entrypoint.sh
+RUN chmod +x ./scripts/docker-entrypoint.sh
 RUN chmod -R 755 data logs
 
-# 切换到非root用户
-USER autoclip
-
 # 暴露端口
-EXPOSE 8000 3000
+EXPOSE 8000
 
 # 健康检查
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/api/v1/health/ || exit 1
 
 # 启动命令
-ENTRYPOINT ["./docker-entrypoint.sh"]
-CMD ["python", "-m", "uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["./scripts/docker-entrypoint.sh"]

@@ -5,6 +5,7 @@
 from fastapi import APIRouter, HTTPException, Query
 from typing import List, Optional
 import logging
+import os
 
 from backend.services.simple_progress import get_multiple_progress_snapshots, get_progress_snapshot
 

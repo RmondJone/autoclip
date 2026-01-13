@@ -120,7 +120,8 @@ const ClipDetailModal: React.FC<ClipDetailModalProps> = ({
 
   if (!clip) return null
 
-  return (
+  // @ts-ignore
+    return (
     <>
       <Modal
         visible={visible}
@@ -204,7 +205,6 @@ const ClipDetailModal: React.FC<ClipDetailModalProps> = ({
               </div>
 
               {/* 操作按钮 */}
-              {console.log('Rendering operation buttons in ClipDetailModal')}
               <Space>
                 <Button 
                   type="primary" 

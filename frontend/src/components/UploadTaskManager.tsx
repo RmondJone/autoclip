@@ -29,7 +29,7 @@ import {
   ClockCircleOutlined,
   CloseCircleOutlined
 } from '@ant-design/icons'
-import { uploadApi, BILIBILI_PARTITIONS } from '../services/uploadApi'
+import {uploadApi, BILIBILI_PARTITIONS, UploadRecord} from '../services/uploadApi'
 import dayjs from 'dayjs'
 
 const { RangePicker } = DatePicker
@@ -59,9 +59,9 @@ interface UploadTaskManagerProps {
 }
 
 const UploadTaskManager: React.FC<UploadTaskManagerProps> = ({ projectId }) => {
-  const [tasks, setTasks] = useState<UploadTask[]>([])
+  const [tasks, setTasks] = useState<UploadRecord[]>([])
   const [loading, setLoading] = useState(false)
-  const [filteredTasks, setFilteredTasks] = useState<UploadTask[]>([])
+  const [filteredTasks, setFilteredTasks] = useState<UploadRecord[]>([])
   const [selectedTask, setSelectedTask] = useState<UploadTask | null>(null)
   const [detailModalVisible, setDetailModalVisible] = useState(false)
   const [filters, setFilters] = useState({

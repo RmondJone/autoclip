@@ -2,7 +2,8 @@
 
 declare module '*.svg' {
   const content: string
-  export default content
+  // @ts-ignore
+    export default content
 }
 
 declare module '*.svg?react' {

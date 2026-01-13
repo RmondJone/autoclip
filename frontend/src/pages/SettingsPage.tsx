@@ -186,7 +186,7 @@ const SettingsPage: React.FC = () => {
                         <Space>
                           <span style={{ color: config.color }}>{config.icon}</span>
                           <span>{config.name}</span>
-                          <Tag color={config.color} size="small">{config.description}</Tag>
+                          <Tag color={config.color}>{config.description}</Tag>
                         </Space>
                       </Select.Option>
                     ))}
@@ -222,14 +222,14 @@ const SettingsPage: React.FC = () => {
                     placeholder="请选择模型"
                     showSearch
                     filterOption={(input, option) =>
-                      (option?.children as string)?.toLowerCase().includes(input.toLowerCase())
+                      (option?.children as unknown as string)?.toLowerCase().includes(input.toLowerCase())
                     }
                   >
                     {availableModels[selectedProvider]?.map((model: any) => (
                       <Select.Option key={model.name} value={model.name}>
                         <Space>
                           <span>{model.display_name}</span>
-                          <Tag size="small">最大{model.max_tokens} tokens</Tag>
+                          <Tag>最大{model.max_tokens} tokens</Tag>
                         </Space>
                       </Select.Option>
                     ))}

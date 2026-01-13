@@ -82,10 +82,10 @@ export const InlineProgressBar: React.FC<InlineProgressBarProps> = ({
   };
 
   // 根据步骤ID获取步骤名称
-  const getStepName = (stepId: number): string => {
+  function getStepName (stepId: number): string {
     const step = PIPELINE_STEPS.find(s => s.id === stepId);
     return step ? step.name : '处理中...';
-  };
+  }
 
   // 监听props变化，更新进度数据
   useEffect(() => {
@@ -237,7 +237,7 @@ export const InlineProgressBar: React.FC<InlineProgressBarProps> = ({
       </div>
       
       {/* 添加CSS动画 */}
-      <style jsx>{`
+      <style>{`
         @keyframes progressBarPulse {
           0%, 100% {
             opacity: 1;

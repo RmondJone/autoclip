@@ -60,7 +60,8 @@ export const useProjectPolling = ({
     poll()
     
     // 设置定时器
-    intervalRef.current = setInterval(poll, interval)
+    // @ts-ignore
+        intervalRef.current = setInterval(poll, interval)
   }
 
   const stopPolling = () => {

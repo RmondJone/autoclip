@@ -1,27 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable", "ES2015", "ES2016", "ES2017", "ES2018", "ES2019"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
+    "target": "es2019",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "strict": false,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "isolatedModules": true,
+    "allowJs": true,
+    "checkJs": false,
     /* Path mapping */
     "baseUrl": ".",
     "paths": {

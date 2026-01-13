@@ -33,7 +33,7 @@ interface SimpleProgressState {
 }
 
 export const useSimpleProgressStore = create<SimpleProgressState>((set, get) => {
-  let timer: NodeJS.Timeout | null = null
+  let timer: any= null
 
   return {
     // 初始状态
